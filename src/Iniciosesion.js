@@ -12,18 +12,19 @@ const initialForm={
 const validationsForm=(form)=>{
     let errors={}
     let regexEmail = /^(\w+[/./-]?){1,}@[a-z]+[/.]\w{2,}$/;
-    let regexpassword = /^.{1,100}$/;
+   /*  La contraseña debe tener al entre 8 y 16 caracteres, al menos un dígito, al menos una minúscula y al menos una mayúscula.
+Puede tener otros símbolos. */
+    let regexpassword = /^(?=\w*\d)(?=\w*[A-Z])(?=\w*[a-z])\S{8,100}$/
 
     if(!form.email.trim()){
         errors.email="";
     }else if(!regexEmail.test(form.email.trim())){
         errors.email="El campo 'Email' es incorrecto"
     }
-
         if(!form.password.trim()){
             errors.password="";
-        }else if(!regexpassword.test(form.email.trim())){
-            errors.password="El campo 'Contraseña' no debe exceder los 100 caracteres"
+        }else if(!regexpassword.test(form.password.trim())){
+            errors.password="La contraseña debe tener al entre 8 y 16 caracteres, al menos un dígito, al menos una minúscula y al menos una mayúscula"
         }
 
     return errors;
@@ -48,8 +49,8 @@ function Iniciosesion(){
                     <h2>Iniciar Sesion</h2>
                 </Grid>
                 <TextField label='Correo Usuario' placeholder='Enter Correo' type='email' variant="outlined" fullWidth autoFocus value={form.email} required onChange={handleChange} name='email' onBlur={handleBlur} margin='dense' helperText={errors.email && <p style={estiloError}> {errors.email}</p>} hel />
-                <TextField label='Contraseña' placeholder='Enter Contraseña' required type='password' variant="outlined" fullWidth
-                value={form.password} onChange={handleChange} onBlur={handleBlur} name='password' margin='dense' helperText= {errors.password && <p style={estiloError}> {errors.password}</p>}/>
+                <TextField label='Contraseña' placeholder='Enter Contraseña' inputProps={{minLength:6}} required type='password' variant="outlined" fullWidth
+                value={form.password} onChange={handleChange} onBlur={handleBlur} name='password' margin='dense' helperText= {errors.password && <p style={estiloError}> {errors.password}</p>} />
                 <Button className='BtnSubmit' type='submit' color='primary' variant="contained" style={btnestilo} fullWidth margin="normal" onClick={handleSubmit}>Iniciar Sesion</Button>
                 <hr/>
                 <Link to="/Registro" style={{textDecoration:"none"}}>
