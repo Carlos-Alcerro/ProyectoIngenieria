@@ -24,7 +24,7 @@ const handleSubmit=(e)=>{
     e.preventDefault()
     setErrors(validateForm(form));
 
-    if(Object.keys(errors).length===0 && Object.keys(errors).setChecked(true)){
+    if(Object.keys(errors).length===0){
         alert('Enviando Formulario')
         setCargando(true)
         helpHttp().post("https://formsubmit.co/ajax/carlosalcerrolainez2017@gmail.com",{
