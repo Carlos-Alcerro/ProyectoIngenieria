@@ -25,7 +25,7 @@ const validationsForm=(form)=>{
     let regexSapellido = /^[A-Za-zÑñÁáÉéÍíÓóÚúÜü\s]+$/;
     let regexDireccion=/^[A-Za-zÑñÁáÉéÍíÓóÚúÜü\s]+$/;
     let regexEmail = /^(\w+[/./-]?){1,}@[a-z]+[/.]\w{2,}$/;
-    let regexpassword = /^.{1,100}$/;
+    let regexpassword = /^(?=\w*\d)(?=\w*[A-Z])(?=\w*[a-z])\S{8,100}$/
     let regexTel=/^[0-9]/;
     let regexDni=/^[0-9]/;
 
@@ -63,7 +63,7 @@ const validationsForm=(form)=>{
     if(!form.password.trim()){
         errors.password="";
     }else if(!regexpassword.test(form.password.trim())){
-        errors.password="El campo 'Contraseña' no debe exceder 100 caracteres"
+        errors.password="La contraseña debe tener al entre 8 y 16 caracteres, al menos un dígito, al menos una minúscula y al menos una mayúscula"
     }
     if(!form.addres.trim()){
         errors.addres="";
