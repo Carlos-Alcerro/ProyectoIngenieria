@@ -35,7 +35,6 @@ const handleSubmit= async e=>{
             birthdate:form.birthdate,       
         }).then(res=>{
             console.log(res.data)
-            localStorage.setItem('token',res.data.token)
             setForm(initialForm)
         }).catch((err)=>{
             console.log(err.response.data)
